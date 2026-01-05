@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 
 @RestController
 @RequiredArgsConstructor
@@ -13,7 +14,7 @@ public class SaySomethingController {
 
   @GetMapping("say/something")
   public ChatResponse saySomething() {
-    return applicationService.saySomethingWithMistralAI();
+    return applicationService.saySomethingWithOllamaAI();
   }
 
 }
