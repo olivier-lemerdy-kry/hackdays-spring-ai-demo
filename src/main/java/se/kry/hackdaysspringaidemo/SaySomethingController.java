@@ -1,6 +1,5 @@
 package se.kry.hackdaysspringaidemo;
 
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +13,7 @@ public class SaySomethingController {
 
   @GetMapping("say/something")
   public ChatResponse saySomething() {
-    return applicationService.saySomethingWithOpenAI();
+    return applicationService.saySomethingWithMistralAI();
   }
 
 }
