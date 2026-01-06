@@ -1,12 +1,12 @@
 plugins {
-	java
-	id("org.springframework.boot") version "3.5.9"
-	id("io.spring.dependency-management") version "1.1.7"
+	id 'java'
+	id 'org.springframework.boot' version '3.5.9'
+	id 'io.spring.dependency-management' version '1.1.7'
 }
 
-group = "se.kry"
-version = "0.0.1-SNAPSHOT"
-description = "hackdays-spring-ai-demo"
+group = 'se.kry'
+version = '0.0.1-SNAPSHOT'
+description = 'hackdays-spring-ai-demo'
 
 java {
 	toolchain {
@@ -16,7 +16,7 @@ java {
 
 configurations {
 	compileOnly {
-		extendsFrom(configurations.annotationProcessor.get())
+		extendsFrom annotationProcessor
 	}
 }
 
@@ -45,6 +45,6 @@ dependencyManagement {
 	}
 }
 
-tasks.withType<Test> {
+tasks.named('test') {
 	useJUnitPlatform()
 }
