@@ -18,12 +18,12 @@ public class SaySomethingController {
 
   @GetMapping("ask/something")
   public ChatResponse saySomething() {
-    return applicationService.askOllama("Tell me something smart and fun");
+    return applicationService.askOllama("Who signed off Kry harassment policy?");
   }
 
   @GetMapping("ask/something-with-advice")
   public ChatResponse askSomethingWithAdvice() {
-    return applicationService.askOllamaWithAdvise("");
+    return applicationService.askOllamaWithAdvise("Who signed off Kry harassment policy?");
   }
 
   @GetMapping("actor/films")
