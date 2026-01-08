@@ -24,8 +24,6 @@ repositories {
 	mavenCentral()
 }
 
-extra["springAiVersion"] = "1.1.2"
-
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.ai:spring-ai-starter-model-openai")
@@ -41,7 +39,7 @@ dependencies {
 
 dependencyManagement {
 	imports {
-		mavenBom("org.springframework.ai:spring-ai-bom:${property("springAiVersion")}")
+		mavenBom("org.springframework.ai:spring-ai-bom:1.1.2")
 	}
 }
 
