@@ -3,7 +3,9 @@ package se.kry.hackdaysspringaidemo;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
 import org.springframework.ai.chat.model.ChatResponse;
+import org.springframework.ai.chat.prompt.ChatOptions;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.ai.ollama.api.OllamaChatOptions;
@@ -33,14 +35,26 @@ public class ApplicationService {
 //        ));
 //  }
 
-  public ChatResponse saySomethingWithOllamaAI() {
+  ChatResponse askOllama(String prompt) {
     return ollamaChatModel.call(
         new Prompt(
-            "How to solve the DRAM availability crisis?",
+            prompt,
             OllamaChatOptions.builder()
                 .model("llama3.2")
                 .build()
         ));
+  }
+
+  ChatResponse askOllamaWithAdvise(String prompt) {
+    return ChatClient.builder(ollamaChatModel)
+        .build().prompt()
+        .advisors(QuestionAnswerAdvisor.builder(vectorStore).build())
+        .user(prompt)
+        .options(ChatOptions.builder()
+            .model("llama3.2")
+            .build())
+        .call()
+        .chatResponse();
   }
 
 //  public ActorFilms generateMoviesWithOllamaAI() {

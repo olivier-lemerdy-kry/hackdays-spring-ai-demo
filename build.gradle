@@ -34,6 +34,7 @@ dependencies {
 	implementation("org.springframework.ai:spring-ai-starter-model-ollama")
 	implementation("org.springframework.ai:spring-ai-advisors-vector-store")
 	implementation 'org.springframework.ai:spring-ai-starter-vector-store-cassandra'
+	implementation 'org.springframework.ai:spring-ai-pdf-document-reader'
 	compileOnly("org.projectlombok:lombok")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	annotationProcessor("org.projectlombok:lombok")
