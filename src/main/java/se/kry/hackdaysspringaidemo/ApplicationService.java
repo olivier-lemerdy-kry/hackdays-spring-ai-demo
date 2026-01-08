@@ -1,5 +1,6 @@
 package se.kry.hackdaysspringaidemo;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.model.ChatResponse;
@@ -10,6 +11,7 @@ import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.ai.ollama.api.OllamaChatOptions;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.ai.openai.OpenAiChatOptions;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import se.kry.hackdaysspringaidemo.domain.ActorFilms;
 
@@ -43,11 +45,22 @@ public class ApplicationService {
   }
 
   public ActorFilms generateMoviesWithOllamaAI() {
-    return ChatClient.builder(ollamaChatModel).build()
+    var chatClient = ChatClient.builder(ollamaChatModel).build();
+    return chatClient
         .prompt()
         .user("Generate the filmography for a random actor.")
         .call()
         .entity(ActorFilms.class);
+  }
+
+  public List<ActorFilms> generateSpecificMoviesWithOllamaAI() {
+    var chatClient = ChatClient.builder(ollamaChatModel).build();
+    return chatClient
+        .prompt()
+        .user("Generate the filmography of 5 movies for Tom Hanks and Bill Murray.")
+        .call()
+        .entity(new ParameterizedTypeReference<>() {
+        });
   }
 
   public ChatResponse saySomethingWithOpenAI() {

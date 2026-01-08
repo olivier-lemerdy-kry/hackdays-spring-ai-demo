@@ -1,5 +1,6 @@
 package se.kry.hackdaysspringaidemo;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +19,8 @@ public class SaySomethingController {
   }
 
   @GetMapping("actor/films")
-  public ActorFilms getActorFilms() {
-    return applicationService.generateMoviesWithOllamaAI();
+  public List<ActorFilms> getActorFilms() {
+    return applicationService.generateSpecificMoviesWithOllamaAI();
   }
 
 }
