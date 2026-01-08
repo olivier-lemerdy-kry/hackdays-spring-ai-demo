@@ -5,12 +5,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
-import org.springframework.ai.mistralai.MistralAiChatModel;
-import org.springframework.ai.mistralai.MistralAiChatOptions;
 import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.ai.ollama.api.OllamaChatOptions;
-import org.springframework.ai.openai.OpenAiChatModel;
-import org.springframework.ai.openai.OpenAiChatOptions;
+import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import se.kry.hackdaysspringaidemo.domain.ActorFilms;
@@ -19,20 +16,22 @@ import se.kry.hackdaysspringaidemo.domain.ActorFilms;
 @RequiredArgsConstructor
 public class ApplicationService {
 
-  private final MistralAiChatModel mistralAiChatModel;
+//  private final MistralAiChatModel mistralAiChatModel;
 
   private final OllamaChatModel ollamaChatModel;
 
-  private final OpenAiChatModel openAiChatModel;
+//  private final OpenAiChatModel openAiChatModel;
 
-  public ChatResponse saySomethingWithMistralAI() {
-    return mistralAiChatModel.call(
-        new Prompt(
-            "In 3 words, explain the meaning of life.",
-            MistralAiChatOptions.builder()
-                .build()
-        ));
-  }
+  private final VectorStore vectorStore;
+
+//  public ChatResponse saySomethingWithMistralAI() {
+//    return mistralAiChatModel.call(
+//        new Prompt(
+//            "In 3 words, explain the meaning of life.",
+//            MistralAiChatOptions.builder()
+//                .build()
+//        ));
+//  }
 
   public ChatResponse saySomethingWithOllamaAI() {
     return ollamaChatModel.call(
@@ -44,14 +43,14 @@ public class ApplicationService {
         ));
   }
 
-  public ActorFilms generateMoviesWithOllamaAI() {
-    var chatClient = ChatClient.builder(ollamaChatModel).build();
-    return chatClient
-        .prompt()
-        .user("Generate the filmography for a random actor.")
-        .call()
-        .entity(ActorFilms.class);
-  }
+//  public ActorFilms generateMoviesWithOllamaAI() {
+//    var chatClient = ChatClient.builder(ollamaChatModel).build();
+//    return chatClient
+//        .prompt()
+//        .user("Generate the filmography for a random actor.")
+//        .call()
+//        .entity(ActorFilms.class);
+//  }
 
   public List<ActorFilms> generateSpecificMoviesWithOllamaAI() {
     var chatClient = ChatClient.builder(ollamaChatModel).build();
@@ -63,15 +62,15 @@ public class ApplicationService {
         });
   }
 
-  public ChatResponse saySomethingWithOpenAI() {
-    return openAiChatModel.call(
-        new Prompt(
-            "In 3 words, explain the meaning of life.",
-            OpenAiChatOptions.builder()
-                .model("gpt-4o")
-                .maxTokens(150)  // Use maxTokens for non-reasoning models
-                .build()
-        ));
-  }
+//  public ChatResponse saySomethingWithOpenAI() {
+//    return openAiChatModel.call(
+//        new Prompt(
+//            "In 3 words, explain the meaning of life.",
+//            OpenAiChatOptions.builder()
+//                .model("gpt-4o")
+//                .maxTokens(150)  // Use maxTokens for non-reasoning models
+//                .build()
+//        ));
+//  }
 
 }

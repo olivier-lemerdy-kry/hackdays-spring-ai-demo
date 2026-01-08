@@ -6,3 +6,6 @@ spring:
         chat:
           additional-models:
             - llama3.2
+    vectorstore:
+      cassandra:
+        initialize-schema: true
