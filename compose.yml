@@ -4,9 +4,16 @@ services:
     ports:
       - "11434:11434"
     volumes:
-      - /Users/olemerdy/.ollama
-  cassandra:
-    image: cassandra
-    ports:
-      - "7000:7000"
-      - "9042:9042"
+      - /Users/faubertin/ollama:/root/.ollama
+  #cassandra:
+  #  image: cassandra
+  #  hostname: cassandra
+  #  volumes:
+  #    - /Users/faubertin/cassandra/datadir:/var/lib/cassandra
+  #  ports:
+  #    - "7000:7000"
+  #    - "9042:9042"
+
+#networks:
+#  cassandra:
+#    driver: bridge

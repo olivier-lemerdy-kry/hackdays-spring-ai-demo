@@ -1,11 +1,20 @@
 spring:
+  application:
+    name: hackdays-spring-ai-demo
   ai:
     ollama:
       init:
         pull-model-strategy: always
-        chat:
-          additional-models:
-            - llama3.2
+        embedding:
+          include: true
+      chat:
+        options:
+          model: llama3.1:8b
+      embedding:
+        options:
+          model: bge-m3
+    model:
+      embedding: ollama
     vectorstore:
       cassandra:
         initialize-schema: true

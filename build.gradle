@@ -29,11 +29,9 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
-	//implementation("org.springframework.ai:spring-ai-starter-model-openai")
-	//implementation("org.springframework.ai:spring-ai-starter-model-mistral-ai")
 	implementation("org.springframework.ai:spring-ai-starter-model-ollama")
 	implementation("org.springframework.ai:spring-ai-advisors-vector-store")
-	implementation 'org.springframework.ai:spring-ai-starter-vector-store-cassandra'
+	//implementation 'org.springframework.ai:spring-ai-starter-vector-store-cassandra'
 	implementation 'org.springframework.ai:spring-ai-pdf-document-reader'
 	compileOnly("org.projectlombok:lombok")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
@@ -45,7 +43,6 @@ dependencies {
 
 dependencyManagement {
 	imports {
-		mavenBom("org.springframework.ai:spring-ai-bom:1.1.2")
 		mavenBom "org.springframework.ai:spring-ai-bom:$springAiVersion"
 	}
 }
