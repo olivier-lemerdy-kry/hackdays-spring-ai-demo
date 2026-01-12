@@ -18,22 +18,20 @@ import se.kry.hackdaysspringaidemo.domain.ActorFilms;
 @RequiredArgsConstructor
 public class ApplicationService {
 
-//  private final MistralAiChatModel mistralAiChatModel;
+  private final MistralAiChatModel mistralAiChatModel;
 
   private final OllamaChatModel ollamaChatModel;
 
 //  private final OpenAiChatModel openAiChatModel;
 
-  private final VectorStore vectorStore;
-
-//  public ChatResponse saySomethingWithMistralAI() {
-//    return mistralAiChatModel.call(
-//        new Prompt(
-//            "In 3 words, explain the meaning of life.",
-//            MistralAiChatOptions.builder()
-//                .build()
-//        ));
-//  }
+  public ChatResponse saySomethingWithMistralAI() {
+    return mistralAiChatModel.call(
+        new Prompt(
+            "In 3 words, explain the meaning of life.",
+            MistralAiChatOptions.builder()
+                .build()
+        ));
+  }
 
   ChatResponse askOllama(String prompt) {
     return ollamaChatModel.call(
@@ -43,18 +41,6 @@ public class ApplicationService {
                 .model("llama3.2")
                 .build()
         ));
-  }
-
-  ChatResponse askOllamaWithAdvise(String prompt) {
-    return ChatClient.builder(ollamaChatModel)
-        .build().prompt()
-        .advisors(QuestionAnswerAdvisor.builder(vectorStore).build())
-        .user(prompt)
-        .options(ChatOptions.builder()
-            .model("llama3.2")
-            .build())
-        .call()
-        .chatResponse();
   }
 
 //  public ActorFilms generateMoviesWithOllamaAI() {
