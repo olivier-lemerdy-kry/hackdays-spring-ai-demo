@@ -3,13 +3,12 @@ package se.kry.hackdaysspringaidemo;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
 import org.springframework.ai.chat.model.ChatResponse;
-import org.springframework.ai.chat.prompt.ChatOptions;
 import org.springframework.ai.chat.prompt.Prompt;
+import org.springframework.ai.mistralai.MistralAiChatModel;
+import org.springframework.ai.mistralai.MistralAiChatOptions;
 import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.ai.ollama.api.OllamaChatOptions;
-import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import se.kry.hackdaysspringaidemo.domain.ActorFilms;
@@ -24,10 +23,10 @@ public class ApplicationService {
 
 //  private final OpenAiChatModel openAiChatModel;
 
-  public ChatResponse saySomethingWithMistralAI() {
+  public ChatResponse askMistralAI(String prompt) {
     return mistralAiChatModel.call(
         new Prompt(
-            "In 3 words, explain the meaning of life.",
+            prompt,
             MistralAiChatOptions.builder()
                 .build()
         ));
